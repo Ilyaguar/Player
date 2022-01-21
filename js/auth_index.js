@@ -42,11 +42,27 @@ $('.card').on('click', function(){
     
     xhr.onreadystatechange = function() {
         if (xhr.readyState == XMLHttpRequest.DONE) {
+
             let res = xhr.responseText;
             res = JSON.parse(res)
             console.log(res)
             $('#album_info')[0].children[0].innerText = res.name
             $('#album_info')[0].children[1].attributes[0].value = res.images[0].url
+
+            console.log(res.tracks.items)
+
+            // (JSON.parse(res.tracks.items)).forEach(element => {
+            //     let cover = element.track.album.images[0],
+            //         name = element.track.name
+
+            //     let block = `
+            //         <div class="track">
+            //             <img src="${cover}" alt="cover">
+            //             <span>${name}</span>
+            //         </div>
+            //     `
+            //     $('track_list').append(block)
+            // });
         }
     }
 
