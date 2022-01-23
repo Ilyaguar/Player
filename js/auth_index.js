@@ -1,12 +1,42 @@
+function disableScroll() {
+    // Получить текущую позицию прокрутки страницы
+    scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+        // при попытке прокрутки установить это значение на предыдущее
+        window.onscroll = function() {
+            window.scrollTo(scrollLeft, scrollTop);
+        };
+}
+
+function enableScroll() {
+    window.onscroll = function() {};
+}
+
+/*----------------------------------------------------------------------------------------*/
+
 $('#player').hide(),
 $('#album_info').hide()
 
+/*----------------------------------------------------------------------------------------*/
+// if (data.howl) {
+//     sound = data.howl;
+// } 
+// else {
+//     let sound = new Howl({
+//         src: ['audio/sound.mp3']
+//     });
+// }
+
+// sound.play()
+
+/*----------------------------------------------------------------------------------------*/
 
 $('.miniPlayer').on('click', function() {
     $('.miniPlayer').hide()
     $('.transCover').show()
     $('#player').show()
     $('.meter').css('zoom', '150%')
+    disableScroll()
 });
 
 $('.bigbtn').on('click', function() {
@@ -15,6 +45,8 @@ $('.bigbtn').on('click', function() {
     $('#player').hide()
     $('#album_info').hide()
     $('.meter').css('zoom', '100%')
+    enableScroll()
+    $('.track').remove()
 });
 
 /*----------------------------------------------------------------------------------------*/
@@ -33,8 +65,9 @@ while (i <= 216) {
 }
 
 $('.card').on('click', function(){
+    disableScroll()
     $('.transCover').show()
-    $('#album_info').show()
+    $('#album_info').show().css('overflow-y', 'auto')
     let album_id = $(this)[0].attributes[1].value
 
     var xhr = new XMLHttpRequest();
@@ -45,24 +78,36 @@ $('.card').on('click', function(){
 
             let res = xhr.responseText;
             res = JSON.parse(res)
-            console.log(res)
             $('#album_info')[0].children[0].innerText = res.name
             $('#album_info')[0].children[1].attributes[0].value = res.images[0].url
 
             console.log(res.tracks.items)
+            res.tracks.items.forEach(element => {
+                let cover = element.track.album.images[0].url,
+                    name = element.track.name;
+                    artists = []
+                    duration_sec = Math.floor((element.track.duration_ms)/1000)
+                    duration = (Math.floor(duration_sec/60)) + ':' + new Intl.NumberFormat('ru-RU', {minimumIntegerDigits: 2}).format(duration_sec%60);
 
-            // (JSON.parse(res.tracks.items)).forEach(element => {
-            //     let cover = element.track.album.images[0],
-            //         name = element.track.name
+                element.track.artists.forEach(element => {
+                    artists.push(element.name)
+                });
 
-            //     let block = `
-            //         <div class="track">
-            //             <img src="${cover}" alt="cover">
-            //             <span>${name}</span>
-            //         </div>
-            //     `
-            //     $('track_list').append(block)
-            // });
+                artists = artists.join(', ')
+
+                let block = `
+                    <div class="track">
+                        <img src="${cover}" alt="cover">
+                        <div class="track_info">
+                            <span>${name}</span>
+                            <br>
+                            <span class="artists">${artists}</span>
+                        </div>
+                        <span>${duration}</span>
+                    </div>
+                `;
+                $('.track_list').append(block);
+            });
         }
     }
 
