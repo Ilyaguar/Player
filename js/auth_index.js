@@ -1,3 +1,5 @@
+// import {Howl, Howler} from 'howler.core';
+
 function disableScroll() {
     // Получить текущую позицию прокрутки страницы
     scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -52,7 +54,6 @@ $('.bigbtn').on('click', function() {
 /*----------------------------------------------------------------------------------------*/
 
 client_id = '4b7568883c5f41249cd4bb2d4fb30e86'
-
 let baseUrl = 'https://api.spotify.com/v1'
 
 let curURL = document.location.href;
@@ -63,6 +64,48 @@ while (i <= 216) {
     token += curURL[i];
     i++;
 }
+
+/*----------------------------------------------------------------------------------------*/
+
+$('#submitSrch').on('click', function(){
+    urls = []
+
+    let cards = Array.from($('.card'))
+    cards.forEach(element => {
+        var xhr = new XMLHttpRequest();
+
+        let r_link = baseUrl + '/playlists/' + element.id;
+        
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == XMLHttpRequest.DONE) {
+
+                let res = xhr.responseText;
+                res = JSON.parse(res)
+                urls.push(res.images[0].url)
+                console.log('done')
+            }
+        }
+
+        xhr.open('GET', r_link, false);
+            
+        xhr.setRequestHeader('Content-Type', 'application/json')
+        xhr.setRequestHeader('Authorization', 'Bearer ' + token)
+            
+        xhr.send();
+    })
+
+    let card_covers = Array.from($('.card_cover'))
+    i = 0;
+    card_covers.forEach(element => {
+        console.log(element)
+        console.log(urls[i])
+        element.src = urls[i];
+        i = i + 1;
+    })
+
+})
+
+/*----------------------------------------------------------------------------------------*/
 
 $('.card').on('click', function(){
     disableScroll()
@@ -176,4 +219,4 @@ $('.card').on('click', function(){
     
 //     // 3. Отсылаем запрос
 //     xhr.send();
-// });
+// })
