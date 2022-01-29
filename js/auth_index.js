@@ -1,5 +1,3 @@
-// import {Howl, Howler} from 'howler.core';
-
 function disableScroll() {
     // Получить текущую позицию прокрутки страницы
     scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -44,9 +42,14 @@ function trackList(album_id, offset) {
 
                 artists = artists.join(', ')
 
-                if (name.length > 30){
-                    name = name.substring(0, 28)
+                if (name.length > 75){
+                    name = name.substring(0, 75)
                     name += '...'
+                }
+
+                if (artists.length > 55){
+                    artists = artists.substring(0, 55)
+                    artists += '...'
                 }
 
                 let block = `
@@ -83,38 +86,6 @@ $('#player').hide(),
 $('#album_info').hide()
 
 /*----------------------------------------------------------------------------------------*/
-// if (data.howl) {
-//     sound = data.howl;
-// } 
-// else {
-//     let sound = new Howl({
-//         src: ['audio/sound.mp3']
-//     });
-// }
-
-// sound.play()
-
-/*----------------------------------------------------------------------------------------*/
-
-$('.miniPlayer').on('click', function() {
-    $('.miniPlayer').hide()
-    $('.transCover').show()
-    $('#player').show()
-    $('.meter').css('zoom', '150%')
-    disableScroll()
-});
-
-$('.bigbtn').on('click', function() {
-    $('.miniPlayer').show()
-    $('.transCover').hide()
-    $('#player').hide()
-    $('#album_info').hide()
-    $('.meter').css('zoom', '100%')
-    enableScroll()
-    $('.track').remove()
-});
-
-/*----------------------------------------------------------------------------------------*/
 
 client_id = '4b7568883c5f41249cd4bb2d4fb30e86'
 let baseUrl = 'https://api.spotify.com/v1'
@@ -128,7 +99,7 @@ while (i <= 216) {
     i++;
 }
 
-/*----------------------------------------------------------------------------------------*/
+/*----- Pre-Load Covers ---------------------------------------------------------------------------------*/
 
 let cards = Array.from($('.card'))
 let card_covers = Array.from($('.card_cover'))
@@ -155,36 +126,25 @@ cards.forEach(element => {
     xhr.send();
 })
 
-/*---Dev_process----------------------------------------------------------------------------*/
-
-$('#submitSrch').on('click', function(){
-    let cards = Array.from($('.card'))
-    let card_covers = Array.from($('.card_cover'))
-
-    i = 0;
-    cards.forEach(element => {
-        let xhr = new XMLHttpRequest();
-        let r_link = baseUrl + '/playlists/' + element.id;
-        
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState == XMLHttpRequest.DONE) {
-                let res = xhr.responseText;
-                res = JSON.parse(res)
-                card_covers[i].src = res.images[0].url
-                i = i + 1;
-            }
-        }
-
-        xhr.open('GET', r_link, false);
-            
-        xhr.setRequestHeader('Content-Type', 'application/json')
-        xhr.setRequestHeader('Authorization', 'Bearer ' + token)
-            
-        xhr.send();
-    })
-})
-
 /*----------------------------------------------------------------------------------------*/
+
+$('.miniPlayer').on('click', function() {
+    $('.miniPlayer').hide()
+    $('.transCover').show()
+    $('#player').show()
+    $('.meter').css('zoom', '150%')
+    disableScroll()
+});
+
+$('.bigbtn').on('click', function() {
+    $('.miniPlayer').show()
+    $('.transCover').hide()
+    $('#player').hide()
+    $('#album_info').hide()
+    $('.meter').css('zoom', '100%')
+    enableScroll()
+    $('.track').remove()
+});
 
 $('.card').on('click', function(){
     disableScroll()
@@ -196,13 +156,10 @@ $('.card').on('click', function(){
     $('#album_info')[0].children[1].attributes[0].value = album_cover
 
     let offset = 0
-    
     while(true){
         let total = trackList(album_id, offset);
-        
-        if (total > 100){
-            offset = offset + 100;
-        }
+        offset = offset + 100;
+
         if (offset > total){
             break
         }
