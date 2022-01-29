@@ -179,7 +179,6 @@ body {
 
 main {
     background-color: rgb(27, 27, 27);
-    height: 850px;
     display: flex;
     flex-direction: column;
     color: #fff;
@@ -189,11 +188,13 @@ main {
 
 .row {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .card {
     height: 275px;
     width: 200px;
+    margin-bottom: 40px;
     background-color: rgba(255, 255, 255, 0.04);
     display: flex;
     flex-direction: column;
@@ -209,6 +210,7 @@ main {
 .card img {
     width: 180px;
     height: 180px;
+    object-fit: cover;
 }
 
 section {
@@ -303,6 +305,7 @@ section {
 .bigCover {
     width: 450px;
     height: 450px;
+    object-fit: cover;
 }
 
 .bigbtn {
@@ -329,13 +332,16 @@ section {
     display: flex;
     align-items: center;
     margin: 5px 0px;
+    padding: 0 20px;
     border-radius: 5px;
+    justify-content: space-around;
+    box-sizing: border-box;
 }
 
 .track img {
     width: 55px;
     height: 55px;
-    margin: 0px 30px;
+    margin: 0px 20px;
 }
 
 .artists {
