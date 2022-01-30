@@ -23,7 +23,6 @@ function trackList(album_id, offset) {
 
             res = xhr.responseText;
             res = JSON.parse(res)
-            console.log(res)
             $('#album_info')[0].children[0].innerText = res.name
 
             total = res.total
@@ -32,9 +31,11 @@ function trackList(album_id, offset) {
             res.items.forEach(element => {
                 let cover = element.track.album.images[0].url,
                     name = element.track.name;
+                    preview = element.track.preview_url
                     artists = []
                     duration_sec = Math.floor((element.track.duration_ms)/1000)
                     duration = (Math.floor(duration_sec/60)) + ':' + new Intl.NumberFormat('ru-RU', {minimumIntegerDigits: 2}).format(duration_sec%60);
+
 
                 element.track.artists.forEach(element => {
                     artists.push(element.name)
@@ -55,7 +56,7 @@ function trackList(album_id, offset) {
                 let block = `
                     <div class="track">
                         <span>${i}</span>
-                        <img src="${cover}" alt="cover">
+                        <img src="${cover}" alt="cover" id="${preview}" class="track_cover">
                         <div class="track_info">
                             <span>${name}</span>
                             <br>
@@ -80,6 +81,34 @@ function trackList(album_id, offset) {
     return(total)
 }
 
+function play_pause(url, track){
+    let audio = $('#audio')
+
+    audio[0].attributes[0].value = url
+    if (url === 'null'){
+        return(404)
+    }
+    else if (track.hasClass('play')) {
+        track.removeClass('play')
+        audio[0].pause()
+    }
+    else {
+        audio[0].play()
+        arr = []
+        $('.track_cover').each(function() {
+            arr.push($(this));
+        });
+        arr.forEach(element => {
+            console.log(element, element.hasClass('play'))
+            if (element.hasClass('play')) {
+                element.removeClass('play')
+            }
+        })
+        track.addClass('play')
+    }
+    return(200)
+}
+
 /*----------------------------------------------------------------------------------------*/
 
 $('#player').hide(),
@@ -98,6 +127,35 @@ while (i <= 216) {
     token += curURL[i];
     i++;
 }
+
+/*-----Dev Process-----------------------------------------------------------------------------------*/
+
+$('#submitSrch').on('click', function(){
+    let cards = Array.from($('.card'))
+    let card_covers = Array.from($('.card_cover'))
+
+    i = 0;
+    cards.forEach(element => {
+        let xhr = new XMLHttpRequest();
+        let r_link = baseUrl + '/playlists/' + element.id;
+        
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == XMLHttpRequest.DONE) {
+                let res = xhr.responseText;
+                res = JSON.parse(res)
+                card_covers[i].src = res.images[0].url
+                i = i + 1;
+            }
+        }
+
+        xhr.open('GET', r_link, false);
+            
+        xhr.setRequestHeader('Content-Type', 'application/json')
+        xhr.setRequestHeader('Authorization', 'Bearer ' + token)
+            
+        xhr.send();
+    })
+})
 
 /*----- Pre-Load Covers ---------------------------------------------------------------------------------*/
 
@@ -163,5 +221,16 @@ $('.card').on('click', function(){
         if (offset > total){
             break
         }
+    }
+})
+
+/*-----html5 audio-----------------------------------------------------------------------------------*/
+
+$(document).on('click', '.track_cover', function(){
+    let url = $(this)[0].attributes.id.value
+    
+    let ans = play_pause(url, $(this))
+    if (ans == 404){
+        alert('Sorry no preview was found, try other tracks')
     }
 })
