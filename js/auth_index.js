@@ -122,9 +122,15 @@ let baseUrl = 'https://api.spotify.com/v1'
 let curURL = document.location.href;
 let token = '';
 
-i = 58;
-while (i <= 216) {
-    token += curURL[i];
+i = 0;
+tkn = false
+while (curURL[i] != '&') {
+    if(tkn){
+        token += curURL[i];
+    }
+    if (curURL[i] == '='){
+        tkn = true
+    }
     i++;
 }
 
