@@ -136,7 +136,7 @@ while (curURL[i] != '&') {
 
 /*----- Dev process ---------------------------------------------------------------------------------*/
 
-// $('submit_srch').on('click', function(){
+// $('#submitSrch').on('click', function(){
 //     let cards = Array.from($('.card'))
 //     let card_covers = Array.from($('.card_cover'))
 //     let cards_arr = Array.from($('.card'))
@@ -151,7 +151,7 @@ while (curURL[i] != '&') {
 //                 let res = xhr.responseText;
 //                 res = JSON.parse(res)
 //                 card_covers[i].src = res.images[0].url
-//                 cards_arr[i][0].childNodes[3].innerText.value = res.name.value
+//                 cards_arr[i][0].childres[1].innerText.value = res.name.value
 //                 i = i + 1;
 //             }
 //         }
@@ -181,7 +181,7 @@ cards.forEach(element => {
             let res = xhr.responseText;
             res = JSON.parse(res)
             card_covers[i].src = res.images[0].url
-            cards_arr[i][0].childNodes[3].innerText.value = res.name.value
+            cards_arr[i][0].childres[1].innerText.value = res.name.value
             i = i + 1;
         }
     }
