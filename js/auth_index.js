@@ -134,42 +134,97 @@ while (curURL[i] != '&') {
     i++;
 }
 
-/*-----Dev Process-----------------------------------------------------------------------------------*/
+/*----- Dev process ---------------------------------------------------------------------------------*/
 
-$('#submitSrch').on('click', function(){
-    let cards = Array.from($('.card'))
-    let card_covers = Array.from($('.card_cover'))
+// $('submit_srch').on('click', function(){
+//     let cards = Array.from($('.card'))
+//     let card_covers = Array.from($('.card_cover'))
+//     let cards_arr = Array.from($('.card'))
 
-    i = 0;
-    cards.forEach(element => {
-        let xhr = new XMLHttpRequest();
-        let r_link = baseUrl + '/playlists/' + element.id;
+//     i = 0;
+//     cards.forEach(element => {
+//         let xhr = new XMLHttpRequest();
+//         let r_link = baseUrl + '/playlists/' + element.id;
         
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState == XMLHttpRequest.DONE) {
-                let res = xhr.responseText;
-                res = JSON.parse(res)
-                card_covers[i].src = res.images[0].url
-                i = i + 1;
-            }
-        }
+//         xhr.onreadystatechange = function() {
+//             if (xhr.readyState == XMLHttpRequest.DONE) {
+//                 let res = xhr.responseText;
+//                 res = JSON.parse(res)
+//                 card_covers[i].src = res.images[0].url
+//                 cards_arr[i][0].childNodes[3].innerText.value = res.name.value
+//                 i = i + 1;
+//             }
+//         }
 
-        xhr.open('GET', r_link, false);
+//         xhr.open('GET', r_link, false);
             
-        xhr.setRequestHeader('Content-Type', 'application/json')
-        xhr.setRequestHeader('Authorization', 'Bearer ' + token)
+//         xhr.setRequestHeader('Content-Type', 'application/json')
+//         xhr.setRequestHeader('Authorization', 'Bearer ' + token)
             
-        xhr.send();
-    })
-})
+//         xhr.send();
+//     })
+// })
 
 /*----- Pre-Load Covers ---------------------------------------------------------------------------------*/
 
 let cards = Array.from($('.card'))
 let card_covers = Array.from($('.card_cover'))
+let cards_arr = Array.from($('.card'))
 
 i = 0;
 cards.forEach(element => {
+    let xhr = new XMLHttpRequest();
+    let r_link = baseUrl + '/playlists/' + element.id;
+    
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            let res = xhr.responseText;
+            res = JSON.parse(res)
+            card_covers[i].src = res.images[0].url
+            cards_arr[i][0].childNodes[3].innerText.value = res.name.value
+            i = i + 1;
+        }
+    }
+
+    xhr.open('GET', r_link, false);
+        
+    xhr.setRequestHeader('Content-Type', 'application/json')
+    xhr.setRequestHeader('Authorization', 'Bearer ' + token)
+        
+    xhr.send();
+})
+
+/*----------------------------------------------------------------------------------------*/
+
+// $('.miniPlayer').on('click', function() {
+//     $('.miniPlayer').hide()
+//     $('.transCover').show()
+//     $('#player').show()
+//     $('.meter').css('zoom', '150%')
+//     disableScroll()
+// });
+
+$('.bigbtn').on('click', function() {
+    // $('.miniPlayer').show()
+    $('.transCover').hide()
+    $('#player').hide()
+    $('#album_info').hide()
+    $('.meter').css('zoom', '100%')
+    enableScroll()
+    $('.track').remove()
+});
+
+
+// track list forming
+$('.card').on('click', function(){ 
+    disableScroll()
+    $('.transCover').show()
+    $('#album_info').show().css('overflow-y', 'auto')
+    let album_id = $(this)[0].attributes[1].value
+    let album_cover = $(this)[0].children[0].attributes[0].value
+
+    $('#album_info')[0].children[1].attributes[0].value = album_cover
+
     let xhr = new XMLHttpRequest();
     let r_link = baseUrl + '/playlists/' + element.id;
     
@@ -188,36 +243,6 @@ cards.forEach(element => {
     xhr.setRequestHeader('Authorization', 'Bearer ' + token)
         
     xhr.send();
-})
-
-/*----------------------------------------------------------------------------------------*/
-
-$('.miniPlayer').on('click', function() {
-    $('.miniPlayer').hide()
-    $('.transCover').show()
-    $('#player').show()
-    $('.meter').css('zoom', '150%')
-    disableScroll()
-});
-
-$('.bigbtn').on('click', function() {
-    $('.miniPlayer').show()
-    $('.transCover').hide()
-    $('#player').hide()
-    $('#album_info').hide()
-    $('.meter').css('zoom', '100%')
-    enableScroll()
-    $('.track').remove()
-});
-
-$('.card').on('click', function(){
-    disableScroll()
-    $('.transCover').show()
-    $('#album_info').show().css('overflow-y', 'auto')
-    let album_id = $(this)[0].attributes[1].value
-    let album_cover = $(this)[0].children[0].attributes[0].value
-
-    $('#album_info')[0].children[1].attributes[0].value = album_cover
 
     let offset = 0
     while(true){
@@ -232,7 +257,7 @@ $('.card').on('click', function(){
 
 /*-----html5 audio-----------------------------------------------------------------------------------*/
 
-$(document).on('click', '.track_cover', function(){
+$(document).on('click', '.track', function(){
     let url = $(this)[0].attributes.id.value
     
     let ans = play_pause(url, $(this))
