@@ -136,40 +136,39 @@ while (curURL[i] != '&') {
 
 /*----- Dev process ---------------------------------------------------------------------------------*/
 
-// $('#submitSrch').on('click', function(){
-//     let cards = Array.from($('.card'))
-//     let card_covers = Array.from($('.card_cover'))
-//     let cards_arr = Array.from($('.card'))
+$('#submitSrch').on('click', function(){
+    let cards = Array.from($('.card'))
+    let card_covers = Array.from($('.card_cover'))
+    let cards_arr = Array.from($('.card'))
 
-//     i = 0;
-//     cards.forEach(element => {
-//         let xhr = new XMLHttpRequest();
-//         let r_link = baseUrl + '/playlists/' + element.id;
+    i = 0;
+    cards.forEach(element => {
+        let xhr = new XMLHttpRequest();
+        let r_link = baseUrl + '/playlists/' + element.id;
         
-//         xhr.onreadystatechange = function() {
-//             if (xhr.readyState == XMLHttpRequest.DONE) {
-//                 let res = xhr.responseText;
-//                 res = JSON.parse(res)
-//                 card_covers[i].src = res.images[0].url
-//                 cards_arr[i][0].childres[1].innerText.value = res.name.value
-//                 i = i + 1;
-//             }
-//         }
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == XMLHttpRequest.DONE) {
+                let res = xhr.responseText;
+                res = JSON.parse(res)
+                card_covers[i].src = res.images[0].url
+                cards_arr[i][0].children[1].innerText.value = res.name.value
+                i = i + 1;
+            }
+        }
 
-//         xhr.open('GET', r_link, false);
+        xhr.open('GET', r_link, false);
             
-//         xhr.setRequestHeader('Content-Type', 'application/json')
-//         xhr.setRequestHeader('Authorization', 'Bearer ' + token)
+        xhr.setRequestHeader('Content-Type', 'application/json')
+        xhr.setRequestHeader('Authorization', 'Bearer ' + token)
             
-//         xhr.send();
-//     })
-// })
+        xhr.send();
+    })
+})
 
 /*----- Pre-Load Covers ---------------------------------------------------------------------------------*/
 
 let cards = Array.from($('.card'))
 let card_covers = Array.from($('.card_cover'))
-let cards_arr = Array.from($('.card'))
 
 i = 0;
 cards.forEach(element => {
@@ -181,7 +180,7 @@ cards.forEach(element => {
             let res = xhr.responseText;
             res = JSON.parse(res)
             card_covers[i].src = res.images[0].url
-            cards_arr[i][0].children[1].innerText.value = res.name.value
+            $(cards[i])[0].children[1].innerText.value = res.name.value
             i = i + 1;
         }
     }
