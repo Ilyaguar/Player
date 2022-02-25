@@ -183,7 +183,7 @@ cards.forEach(element => {
             let res = xhr.responseText;
             res = JSON.parse(res)
             card_covers[i].src = res.images[0].url
-            $(cards[i])[0].children[1].innerText.value = res.name.value
+            $(cards[i])[0].children[1].innerText = res.name
             i = i + 1;
         }
     }
