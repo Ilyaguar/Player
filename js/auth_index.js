@@ -43,8 +43,8 @@ function trackList(album_id, offset) {
 
                 artists = artists.join(', ')
 
-                if (name.length > 75){
-                    name = name.substring(0, 75)
+                if (name.length > 40){
+                    name = name.substring(0, 35)
                     name += '...'
                 }
 
@@ -110,8 +110,7 @@ function play_pause(url, track){
 
 /*----------------------------------------------------------------------------------------*/
 
-$('#player').hide(),
-$('#album_info').hide()
+//$('#player').hide(),
 
 /*----------------------------------------------------------------------------------------*/
 
@@ -192,6 +191,9 @@ cards.forEach(element => {
     xhr.send();
 })
 
+$('.load').hide()
+$('.transCover').hide()
+
 /*----------------------------------------------------------------------------------------*/
 
 // $('.miniPlayer').on('click', function() {
@@ -205,9 +207,9 @@ cards.forEach(element => {
 $('.bigbtn').on('click', function() {
     // $('.miniPlayer').show()
     $('.transCover').hide()
-    $('#player').hide()
+    //$('#player').hide()
     $('#album_info').hide()
-    $('.meter').css('zoom', '100%')
+    //$('.meter').css('zoom', '100%')
     enableScroll()
     $('.track').remove()
 });
@@ -217,7 +219,7 @@ $('.bigbtn').on('click', function() {
 $('.card').on('click', function(){ 
     disableScroll()
     $('.transCover').show()
-    $('#album_info').show().css('overflow-y', 'auto')
+    $('.load').show()
     let album_id = $(this)[0].attributes[1].value
     let album_cover = $(this)[0].children[0].attributes[0].value
 
@@ -234,6 +236,9 @@ $('.card').on('click', function(){
             break
         }
     }
+
+    $('.load').hide()
+    $('#album_info').show().css('overflow-y', 'auto')
 })
 
 /*-----html5 audio-----------------------------------------------------------------------------------*/

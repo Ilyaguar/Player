@@ -226,7 +226,6 @@ section {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.75);
-    display: none;
 
 }
 
@@ -242,6 +241,7 @@ section {
     box-sizing: border-box;
     color: #fff;
     border-radius: 5px;
+    display: none;
 }
 
 #player {
@@ -355,7 +355,32 @@ section {
     margin-right: 30px;
 }
 
-/*------------------------------------------------------------*/
+/*----- Animation -------------------------------------------------------*/
+
+.load {
+    height: 50px;
+    width: 50px;
+    border: 7px solid rgba(150, 150, 150, 0.2);
+    border-radius: 50%;
+    border-top-color: rgb(255, 255, 255);
+    animation: rotate 3s ease-in-out infinite;
+    position: absolute;
+    left: calc(50vw - 25px);
+    top: calc(50vh - 25px);
+
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/*----- Fonts -------------------------------------------------------*/
 
 @font-face {
 	font-family: Montserrat ExtraBold;
