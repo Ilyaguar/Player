@@ -68,6 +68,11 @@ function trackList(album_id, offset) {
                 $('.track_list').append(block);
                 i = i + 1;
             });
+
+            if (total < offset + 100) {
+                $('.load').hide()
+                $('#album_info').show().css('overflow-y', 'auto').css('display', 'flex')
+            }
         }
     }
 
@@ -236,9 +241,6 @@ $('.card').on('click', function(){
             break
         }
     }
-
-    $('.load').hide()
-    $('#album_info').show().css('overflow-y', 'auto')
 })
 
 /*-----html5 audio-----------------------------------------------------------------------------------*/
