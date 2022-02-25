@@ -23,7 +23,6 @@ function trackList(album_id, offset) {
 
             res = xhr.responseText;
             res = JSON.parse(res)
-            $('#album_info')[0].children[0].innerText = res.name
 
             total = res.total
 
@@ -70,6 +69,7 @@ function trackList(album_id, offset) {
             });
 
             if (total < offset + 100) {
+                console.log('hide')
                 $('.load').hide()
                 $('#album_info').show().css('overflow-y', 'auto').css('display', 'flex')
             }
@@ -225,12 +225,12 @@ $('.card').on('click', function(){
     disableScroll()
     $('.transCover').show()
     $('.load').show()
+    console.log('show')
     let album_id = $(this)[0].attributes[1].value
     let album_cover = $(this)[0].children[0].attributes[0].value
 
     $('#album_info')[0].children[1].attributes[0].value = album_cover
     $('#album_info')[0].children[0].innerText = $(this)[0].children[1].innerText
-
     
     let offset = 0
     while(true){
