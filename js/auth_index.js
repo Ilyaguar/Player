@@ -42,12 +42,17 @@ function trackList(album_id, offset) {
 
                 artists = artists.join(', ')
 
+                let alt_name = '',
+                    alt_artists = '';
+
                 if (name.length > 40){
+                    alt_name = name
                     name = name.substring(0, 35)
                     name += '...'
                 }
 
                 if (artists.length > 55){
+                    alt_artists = artists
                     artists = artists.substring(0, 55)
                     artists += '...'
                 }
@@ -57,9 +62,9 @@ function trackList(album_id, offset) {
                         <span>${i}</span>
                         <img src="${cover}" alt="cover" id="${preview}" class="track_cover">
                         <div class="track_info">
-                            <span>${name}</span>
+                            <span title-'${alt_name}'>${name}</span>
                             <br>
-                            <span class="artists">${artists}</span>
+                            <span class="artists" title='${alt_artists}'>${artists}</span>
                         </div>
                         <span>${duration}</span>
                     </div>
