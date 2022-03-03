@@ -58,7 +58,7 @@ function trackList(album_id, offset) {
                 }
 
                 let block = `
-                    <div class="track">
+                    <div class="track" data-aos="fade-up">
                         <span>${i}</span>
                         <img src="${cover}" alt="cover" id="${preview}" class="track_cover">
                         <div class="track_info">

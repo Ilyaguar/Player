@@ -1,3 +1,38 @@
 body {
-    background-color: rgb(27, 27, 27);;
+    background-color: rgb(27, 27, 27);
+    font-family: 'Montserrat', sans-serif;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20vh;
+}
+
+h1 {
+    cursor: default;
+}
+
+#auth_btn {
+    border: 0;
+    background-color: #1ed760;
+    border-radius: 100px;
+    color: #181818;
+    margin-top: 100px;
+    width: 275px;
+    height: 40px;
+    font-size: 14pt;
+    cursor: pointer;
+}
+
+.logoCombo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 1300px;
+    align-items: center;
+    color: #e5f2fd;
+    font-size: 24pt;
 }

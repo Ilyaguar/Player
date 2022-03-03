@@ -192,8 +192,8 @@ main {
 }
 
 .card {
-    height: 275px;
-    width: 200px;
+    height: 300px;
+    width: 220px;
     margin-bottom: 40px;
     background-color: rgba(255, 255, 255, 0.04);
     display: flex;
@@ -201,6 +201,7 @@ main {
     justify-content: space-evenly;
     align-items: center;
     margin-right: 75px;
+    border-radius: 2px;
 }
 
 .card:hover {
@@ -211,6 +212,7 @@ main {
     width: 180px;
     height: 180px;
     object-fit: cover;
+    border-radius: 4px;
 }
 
 section {
@@ -219,6 +221,7 @@ section {
 
 h3 {
     text-align: center;
+    font-size: 12pt;
 }
 
 /*------------------------------------------------------------*/
