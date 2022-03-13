@@ -58,7 +58,7 @@ function trackList(album_id, offset) {
                 }
 
                 let block = `
-                    <div class="track" data-aos="fade-up">
+                    <div class="track">
                         <span>${i}</span>
                         <img src="${cover}" alt="cover" id="${preview}" class="track_cover">
                         <div class="track_info">
@@ -142,37 +142,6 @@ while (curURL[i] != '&') {
     i++;
 }
 
-/*----- Dev process ---------------------------------------------------------------------------------*/
-
-// $('#submitSrch').on('click', function(){
-//     let cards = Array.from($('.card'))
-//     let card_covers = Array.from($('.card_cover'))
-//     let cards_arr = Array.from($('.card'))
-
-//     i = 0;
-//     cards.forEach(element => {
-//         let xhr = new XMLHttpRequest();
-//         let r_link = baseUrl + '/playlists/' + element.id;
-        
-//         xhr.onreadystatechange = function() {
-//             if (xhr.readyState == XMLHttpRequest.DONE) {
-//                 let res = xhr.responseText;
-//                 res = JSON.parse(res)
-//                 card_covers[i].src = res.images[0].url
-//                 cards_arr[i][0].children[1].innerText.value = res.name.value
-//                 i = i + 1;
-//             }
-//         }
-
-//         xhr.open('GET', r_link, false);
-            
-//         xhr.setRequestHeader('Content-Type', 'application/json')
-//         xhr.setRequestHeader('Authorization', 'Bearer ' + token)
-            
-//         xhr.send();
-//     })
-// })
-
 /*----- Pre-Load Covers ---------------------------------------------------------------------------------*/
 
 let cards = Array.from($('.card'))
@@ -206,20 +175,9 @@ $('.transCover').hide()
 
 /*----------------------------------------------------------------------------------------*/
 
-// $('.miniPlayer').on('click', function() {
-//     $('.miniPlayer').hide()
-//     $('.transCover').show()
-//     $('#player').show()
-//     $('.meter').css('zoom', '150%')
-//     disableScroll()
-// });
-
 $('.bigbtn').on('click', function() {
-    // $('.miniPlayer').show()
     $('.transCover').hide()
-    //$('#player').hide()
     $('#album_info').hide()
-    //$('.meter').css('zoom', '100%')
     enableScroll()
     $('.track').remove()
 });
@@ -255,6 +213,12 @@ $(document).on('click', '.track', function(){
     
     let ans = play_pause(url, $(this))
     if (ans == 404){
-        alert('Sorry no preview was found, try other tracks')
+        $(".alert").addClass('alert-anim').show()
+        setTimeout(() => {
+            $(".alert").removeClass('alert-anim')
+        }, 500);
+        setTimeout(() => {
+            $(".alert").hide()
+        }, 5000);
     }
 })

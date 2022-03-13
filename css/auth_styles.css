@@ -73,6 +73,12 @@ body {
     color: #fff;
 }
 
+.inputf:active, :focus {
+    outline: 0;
+    outline-offset: 0;
+    background-color: rgba(255, 255, 255, 0.12)
+}
+
 #submitSrch {
     border: none;
     border-top-right-radius: 20px;
@@ -89,11 +95,6 @@ body {
 .searchBar img {
     width: 15px;
     height: 15px;
-    opacity: 0.7;
-}
-
-.searchBar img:hover {
-    opacity: 1;
 }
 
 .miniPlayer {
@@ -202,6 +203,7 @@ main {
     align-items: center;
     margin-right: 75px;
     border-radius: 2px;
+    transition: all 500ms ease;
 }
 
 .card:hover {
@@ -361,6 +363,54 @@ h3 {
     margin-right: 30px;
 }
 
+.alert {
+    width: 300px;
+    height: 200px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    display: none;
+}
+
+/*----- Scroll bar -------------------------------------------------------*/
+
+::-webkit-scrollbar-button {
+    background-image: url(''); 
+    background-repeat: no-repeat;
+    width: 0px;
+    height: 0px
+}
+
+::-webkit-scrollbar-track {
+    background-color: #333;
+}
+
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 5px;
+    background-color: rgba(57, 204, 108, 0.75);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #1ed760;
+}
+
+::-webkit-scrollbar-corner {
+    background-repeat: no-repeat;
+}
+
+::-webkit-resizer {
+    background-image: url('');
+    background-repeat: no-repeat;
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
 /*----- Animation -------------------------------------------------------*/
 
 .load {
@@ -376,6 +426,10 @@ h3 {
 
 }
 
+.alert-anim {
+    animation: alert-pos 500ms ease;
+}
+
 @keyframes rotate {
     0% {
         transform: rotate(0deg);
@@ -383,6 +437,15 @@ h3 {
 
     100% {
         transform: rotate(360deg);
+    }
+}
+
+@keyframes alert-pos {
+    from{
+        bottom: -200px;
+    }
+    to{
+        bottom: 0;
     }
 }
 
