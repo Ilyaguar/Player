@@ -212,18 +212,18 @@ $('.card').on('click', function(){
 })
 
 $(document).on('mouseenter', '.track', function(){
-    if (($(this))[0].hasClass('play')){
+    if (($(this)).hasClass('play')){
         ($(this))[0].children[1].children[1].children[0].attributes[0] = 'img/pause.png'
-        ($(this))[0].children[1].children[1].show()
+        $(($(this))[0].children[1].children[1]).show()
     }
     else{
         ($(this))[0].children[1].children[1].children[0].attributes[0] = 'img/play.png'
-        ($(this))[0].children[1].children[1].show()
+        $(($(this))[0].children[1].children[1]).show()
     }
 })
 
 $(document).on('mouseleave', '.track', function(){
-    ($(this))[0].children[1].children[1].hide()
+    $(($(this))[0].children[1].children[1]).hide()
 })
 
 

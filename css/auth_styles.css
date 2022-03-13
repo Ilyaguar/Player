@@ -353,14 +353,15 @@ h3 {
     margin: 0px 20px;
 }
 
-.pp-cover {
+.pp_cover {
     position: relative;
-    top: -60px;
+    top: -59px;
     border: none;
     background-color: rgba(0, 0, 0, 0.4);
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 55px;
 }
 
 .artists {
