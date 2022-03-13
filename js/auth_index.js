@@ -60,7 +60,7 @@ function trackList(album_id, offset) {
                 let block = `
                     <div class="track">
                         <span>${i}</span>
-                        <div>
+                        <div class='intercover'>
                             <img src="${cover}" alt="cover" id="${preview}" class="track_cover">
                             <div class='pp_cover'>
                                 <img href='img/play.png'>

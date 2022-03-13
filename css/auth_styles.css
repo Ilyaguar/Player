@@ -350,18 +350,25 @@ h3 {
 .track img {
     width: 55px;
     height: 55px;
+}
+
+.intercover {
+    width: 55px;
+    height: 55px;
     margin: 0px 20px;
 }
 
 .pp_cover {
+    display: none;
     position: relative;
-    top: -59px;
+    top: -60px;
     border: none;
     background-color: rgba(0, 0, 0, 0.4);
     display: flex;
     justify-content: center;
     align-items: center;
     width: 55px;
+    height: 55px;
 }
 
 .artists {
