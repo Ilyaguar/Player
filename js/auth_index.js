@@ -213,11 +213,11 @@ $('.card').on('click', function(){
 
 $(document).on('mouseenter', '.track', function(){
     if (($(this)).hasClass('play')){
-        ($(this))[0].children[1].children[1].children[0].attributes[0] = '../img/pause.png'
+        ($(this))[0].children[1].children[1].children[0].attributes[0].value = '../img/pause.png'
         $(($(this))[0].children[1].children[1]).show()
     }
     else{
-        ($(this))[0].children[1].children[1].children[0].attributes[0] = '../img/play.png'
+        ($(this))[0].children[1].children[1].children[0].attributes[0].value = '../img/play.png'
         $(($(this))[0].children[1].children[1]).show()
     }
 })

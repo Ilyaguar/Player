@@ -361,7 +361,7 @@ h3 {
 .pp_cover {
     display: none;
     position: relative;
-    top: -60px;
+    top: -59px;
     border: none;
     background-color: rgba(0, 0, 0, 0.4);
     display: flex;
@@ -369,6 +369,12 @@ h3 {
     align-items: center;
     width: 55px;
     height: 55px;
+}
+
+.pp_cover img {
+    width: 25px;
+    height: 25px;
+    opacity: 0.75;
 }
 
 .artists {
