@@ -63,7 +63,7 @@ function trackList(album_id, offset) {
                         <div>
                             <img src="${cover}" alt="cover" id="${preview}" class="track_cover">
                             <div class='pp_cover'>
-                                <img href='img/play-button-arrowhead.png'>
+                                <img href='img/play.png'>
                             </div>
                         </div>
                         <div class="track_info">
@@ -211,13 +211,19 @@ $('.card').on('click', function(){
     }
 })
 
-$(document).on('mousemove', '.track', function(){
+$(document).on('mouseenter', '.track', function(){
     if (($(this))[0].hasClass('play')){
-        console.log(($(this))[0].children[1].children[1].children[0].attributes)
+        ($(this))[0].children[1].children[1].children[0].attributes[0] = 'img/pause.png'
+        ($(this))[0].children[1].children[1].show()
     }
     else{
-        
+        ($(this))[0].children[1].children[1].children[0].attributes[0] = 'img/play.png'
+        ($(this))[0].children[1].children[1].show()
     }
+})
+
+$(document).on('mouseleave', '.track', function(){
+    ($(this))[0].children[1].children[1].hide()
 })
 
 

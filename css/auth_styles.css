@@ -353,24 +353,14 @@ h3 {
     margin: 0px 20px;
 }
 
-.track_cover::before {
-    content: '▶';
-    display: block;
-    background-color:rgba(0, 0, 0, 0.4);
-    height: 50px;
-    width: 50px;
-    position: absolute;
-    opacity: var(--play-opacity);
-}
-
-.track_cover::after {
-    content: '❚❚';
-    display: block;
-    background-color:rgba(0, 0, 0, 0.4);
-    height: 50px;
-    width: 50px;
-    position: absolute;
-    opacity: var(--pause-opacity);
+.pp-cover {
+    position: relative;
+    top: -60px;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .artists {
