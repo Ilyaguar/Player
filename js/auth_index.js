@@ -60,7 +60,12 @@ function trackList(album_id, offset) {
                 let block = `
                     <div class="track">
                         <span>${i}</span>
-                        <img src="${cover}" alt="cover" id="${preview}" class="track_cover">
+                        <div>
+                            <img src="${cover}" alt="cover" id="${preview}" class="track_cover">
+                            <div class='pp_cover'>
+                                <img href='img/play-button-arrowhead.png'>
+                            </div>
+                        </div>
                         <div class="track_info">
                             <span title-'${alt_name}'>${name}</span>
                             <br>
@@ -207,13 +212,11 @@ $('.card').on('click', function(){
 })
 
 $(document).on('mousemove', '.track', function(){
-    if ($(this)[0].hasClass('play')){
-        $(this)[0].style.setProperty('--pause-opacity', '1')
-        $(this)[0].style.setProperty('--play-opacity', '0')
+    if (($(this))[0].hasClass('play')){
+        console.log(($(this))[0].children[1].children[1].children[0].attributes)
     }
     else{
-        $(this)[0].style.setProperty('--play-opacity', '1')
-        $(this)[0].style.setProperty('--pause-opacity', '0')
+        
     }
 })
 
@@ -221,7 +224,7 @@ $(document).on('mousemove', '.track', function(){
 /*-----html5 audio-----------------------------------------------------------------------------------*/
 
 $(document).on('click', '.track', function(){
-    let url = ($(this))[0].children[1].attributes[2].value
+    let url = ($(this))[0].children[1].children[0].attributes[2].value
     
     let ans = play_pause(url, $(this))
     if (ans == 404){
