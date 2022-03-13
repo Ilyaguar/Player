@@ -206,6 +206,18 @@ $('.card').on('click', function(){
     }
 })
 
+$(document).on('mousemove', '.track', function(){
+    if ($(this)[0].hasClass('play')){
+        $(this)[0].style.setProperty('--pause-opacity', '1')
+        $(this)[0].style.setProperty('--play-opacity', '0')
+    }
+    else{
+        $(this)[0].style.setProperty('--play-opacity', '1')
+        $(this)[0].style.setProperty('--pause-opacity', '0')
+    }
+})
+
+
 /*-----html5 audio-----------------------------------------------------------------------------------*/
 
 $(document).on('click', '.track', function(){
@@ -219,6 +231,6 @@ $(document).on('click', '.track', function(){
         }, 500);
         setTimeout(() => {
             $(".alert").hide()
-        }, 5000);
+        }, 4000);
     }
 })
