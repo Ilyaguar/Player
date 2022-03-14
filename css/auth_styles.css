@@ -204,6 +204,7 @@ main {
     margin-right: 75px;
     border-radius: 2px;
     transition: all 500ms ease;
+    cursor: pointer;
 }
 
 .card:hover {
@@ -343,13 +344,13 @@ h3 {
     border-radius: 5px;
     justify-content: space-around;
     box-sizing: border-box;
-    --play-opacity: 0;
-    --pause-opacity: 0;
+    cursor: pointer;
 }
 
 .track img {
     width: 55px;
     height: 55px;
+    border-radius: 3px;
 }
 
 .intercover {
@@ -369,6 +370,7 @@ h3 {
     align-items: center;
     width: 55px;
     height: 55px;
+    border-radius: 3px;
 }
 
 .pp_cover img {
@@ -400,6 +402,8 @@ h3 {
     border-top-left-radius: 5px;
     color: rgb(255, 255, 255);
     font-family: "Montserrat Bold";
+    padding: 15px;
+    box-sizing: border-box;
 }
 
 /*----- Scroll bar -------------------------------------------------------*/

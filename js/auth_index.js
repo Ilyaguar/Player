@@ -106,6 +106,7 @@ function play_pause(url, track){
     else if (track.hasClass('play')) {
         track.removeClass('play')
         audio[0].pause()
+        ($(track))[0].children[1].children[1].children[0].attributes[0].value = '../img/play.png'
     }
     else {
         audio[0].play()
@@ -119,13 +120,10 @@ function play_pause(url, track){
             }
         })
         track.addClass('play')
+        ($(track))[0].children[1].children[1].children[0].attributes[0].value = '../img/pause.png'
     }
     return(200)
 }
-
-/*----------------------------------------------------------------------------------------*/
-
-//$('#player').hide(),
 
 /*----------------------------------------------------------------------------------------*/
 
@@ -137,7 +135,7 @@ let token = '';
 
 i = 0;
 tkn = false
-while (curURL[i] != '&') {
+while (curURL[i] != '&') {      //Getting token
     if(tkn){
         token += curURL[i];
     }
@@ -200,16 +198,21 @@ $('.card').on('click', function(){
     $('#album_info')[0].children[1].attributes[0].value = album_cover
     $('#album_info')[0].children[0].innerText = $(this)[0].children[1].innerText
     
-    let offset = 0
-    while(true){
-        let total = trackList(album_id, offset);
-        offset = offset + 100;
+    setTimeout(() => {
+        let offset = 0
+        while(true){
+            let total = trackList(album_id, offset);
+            offset = offset + 100;
 
-        if (offset > total){
-            break
+            if (offset > total){
+                break
+            }
         }
-    }
+    }, 100)
 })
+
+/*-----Mouse Interactions-----------------------------------------------------------------------------------*/
+
 
 $(document).on('mouseenter', '.track', function(){
     if (($(this)).hasClass('play')){
@@ -242,4 +245,29 @@ $(document).on('click', '.track', function(){
             $(".alert").hide()
         }, 4000);
     }
+})
+
+/*----- Search -----------------------------------------------------------------------------------*/
+
+$('#submitSrch').on('click', function(){
+    q = $('#srchBar')[0].value
+
+    let xhr = new XMLHttpRequest();
+    let r_link = baseUrl + `/search?q=${q}&type=track&limit=20`;
+    
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            let res = xhr.responseText;
+            res = JSON.parse(res)
+            console.log(res)
+        }
+    }
+
+    xhr.open('GET', r_link, false);
+        
+    xhr.setRequestHeader('Content-Type', 'application/json')
+    xhr.setRequestHeader('Authorization', 'Bearer ' + token)
+        
+    xhr.send();
+
 })
