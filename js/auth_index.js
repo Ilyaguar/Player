@@ -79,7 +79,6 @@ function trackList(album_id, offset) {
             });
 
             if (total < offset + 100) {
-                console.log('hide')
                 $('.load').hide()
                 $('#album_info').show().css('overflow-y', 'auto').css('display', 'flex')
             }
@@ -97,7 +96,8 @@ function trackList(album_id, offset) {
 }
 
 function play_pause(url, track){
-    let audio = $('#audio')
+    let audio = $('#audio'),
+        pp = $(track)[0].children[1].children[1].children[0].attributes[0]
 
     audio[0].attributes[0].value = url
     if (url === 'null'){
@@ -106,12 +106,13 @@ function play_pause(url, track){
     else if (track.hasClass('play')) {
         track.removeClass('play')
         audio[0].pause()
-        ($(track))[0].children[1].children[1].children[0].attributes[0].value = '../img/play.png'
+        pp.value = "../img/play.png"
+
     }
     else {
         audio[0].play()
         arr = []
-        $('.track_cover').each(function() {
+        $('.track').each(function() {
             arr.push($(this));
         });
         arr.forEach(element => {
@@ -120,7 +121,7 @@ function play_pause(url, track){
             }
         })
         track.addClass('play')
-        ($(track))[0].children[1].children[1].children[0].attributes[0].value = '../img/pause.png'
+        pp.value = '../img/pause.png'
     }
     return(200)
 }
@@ -191,7 +192,6 @@ $('.card').on('click', function(){
     disableScroll()
     $('.transCover').show()
     $('.load').show()
-    console.log('show')
     let album_id = $(this)[0].attributes[1].value
     let album_cover = $(this)[0].children[0].attributes[0].value
 
@@ -253,7 +253,7 @@ $('#submitSrch').on('click', function(){
     q = $('#srchBar')[0].value
 
     let xhr = new XMLHttpRequest();
-    let r_link = baseUrl + `/search?q=${q}&type=track&limit=20`;
+    let r_link = baseUrl + `/search?query=${q}&type=track,album&limit=10`;
     
     xhr.onreadystatechange = function() {
         if (xhr.readyState == XMLHttpRequest.DONE) {

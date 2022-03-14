@@ -345,6 +345,11 @@ h3 {
     justify-content: space-around;
     box-sizing: border-box;
     cursor: pointer;
+    transition: all 500ms ease;
+}
+
+.track:hover {
+    background-color: rgba(255, 255, 255, 0.12);
 }
 
 .track img {
