@@ -12,21 +12,8 @@ function enableScroll() {
     window.onscroll = function() {};
 }
 
-function trackList(album_id, offset) {
-    let xhr = new XMLHttpRequest();
-    let r_link = baseUrl + '/playlists/' + album_id + '/tracks?offset=' + offset;
-    let total = 0
-    let res
-    
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState == XMLHttpRequest.DONE) {
-
-            res = xhr.responseText;
-            res = JSON.parse(res)
-
-            total = res.total
-
-            i = 1 + offset;
+function trackList(res){
+    i = 1 + offset;
             res.items.forEach(element => {
                 let cover = element.track.album.images[0].url,
                     name = element.track.name;
@@ -74,9 +61,26 @@ function trackList(album_id, offset) {
                         <span>${duration}</span>
                     </div>
                 `;
-                $('.track_list').append(block);
+                $('#track_list').append(block);
                 i = i + 1;
             });
+}
+
+function playlistTracks(album_id, offset) {
+    let xhr = new XMLHttpRequest();
+    let r_link = baseUrl + '/playlists/' + album_id + '/tracks?offset=' + offset;
+    let total = 0
+    let res
+    
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+
+            res = xhr.responseText;
+            res = JSON.parse(res)
+
+            total = res.total
+
+            trackList(res)
 
             if (total < offset + 100) {
                 $('.load').hide()
@@ -253,7 +257,7 @@ $('#submitSrch').on('click', function(){
     q = $('#srchBar')[0].value
 
     let xhr = new XMLHttpRequest();
-    let r_link = baseUrl + `/search?query=${q}&type=track,album&limit=10`;
+    let r_link = baseUrl + `/search?query=${q}&type=track&limit=10`;
     
     xhr.onreadystatechange = function() {
         if (xhr.readyState == XMLHttpRequest.DONE) {
