@@ -12,59 +12,81 @@ function enableScroll() {
     window.onscroll = function() {};
 }
 
-function trackList(res){
+function trackList(res, offset, list) {
     i = 1 + offset;
-            res.items.forEach(element => {
-                let cover = element.track.album.images[0].url,
-                    name = element.track.name;
-                    preview = element.track.preview_url
-                    artists = []
-                    duration_sec = Math.floor((element.track.duration_ms)/1000)
-                    duration = (Math.floor(duration_sec/60)) + ':' + new Intl.NumberFormat('ru-RU', {minimumIntegerDigits: 2}).format(duration_sec%60);
+    console.log('items', res)
+
+    let m_dir
+    
+    if (list == $('#track_list')){
+         m_dir = res.items
+    }
+    else {
+         m_dir = res.tracks.items
+    }
+    
+
+    m_dir.forEach(element => {
+
+        let dir
+
+        if (list == $('#track_list')){
+            dir = element.track
+        }
+        else {
+            dir = element
+        }
+
+        let cover = dir.album.images[0].url,
+            name = dir.name;
+            preview = dir.preview_url
+            artists = []
+            duration_sec = Math.floor((dir.duration_ms)/1000)
+            duration = (Math.floor(duration_sec/60)) + ':' + new Intl.NumberFormat('ru-RU', {minimumIntegerDigits: 2}).format(duration_sec%60);
 
 
-                element.track.artists.forEach(element => {
-                    artists.push(element.name)
-                });
+        dir.artists.forEach(element => {
+            artists.push(element.name)
+        });
 
-                artists = artists.join(', ')
+        artists = artists.join(', ')
 
-                let alt_name = '',
-                    alt_artists = '';
+        let alt_name = '',
+            alt_artists = '';
 
-                if (name.length > 40){
-                    alt_name = name
-                    name = name.substring(0, 35)
-                    name += '...'
-                }
+        if (name.length > 40){
+            alt_name = name
+            name = name.substring(0, 35)
+            name += '...'
+        }
 
-                if (artists.length > 55){
-                    alt_artists = artists
-                    artists = artists.substring(0, 55)
-                    artists += '...'
-                }
+        if (artists.length > 55){
+            alt_artists = artists
+            artists = artists.substring(0, 55)
+            artists += '...'
+        }
 
-                let block = `
-                    <div class="track">
-                        <span>${i}</span>
-                        <div class='intercover'>
-                            <img src="${cover}" alt="cover" id="${preview}" class="track_cover">
-                            <div class='pp_cover' style='display: none;'>
-                                <img src='../img/play.png'>
-                            </div>
-                        </div>
-                        <div class="track_info">
-                            <span title-'${alt_name}'>${name}</span>
-                            <br>
-                            <span class="artists" title='${alt_artists}'>${artists}</span>
-                        </div>
-                        <span>${duration}</span>
+        let block = `
+            <div class="track">
+                <span>${i}</span>
+                <div class='intercover'>
+                    <img src="${cover}" alt="cover" id="${preview}" class="track_cover">
+                    <div class='pp_cover' style='display: none;'>
+                        <img src='../img/play.png'>
                     </div>
-                `;
-                $('#track_list').append(block);
-                i = i + 1;
-            });
-}
+                </div>
+                <div class="track_info">
+                    <span title-'${alt_name}'>${name}</span>
+                    <br>
+                    <span class="artists" title='${alt_artists}'>${artists}</span>
+                </div>
+                <span>${duration}</span>
+            </div>
+        `;
+        list.append(block);
+        i = i + 1;
+    });
+};
 
 function playlistTracks(album_id, offset) {
     let xhr = new XMLHttpRequest();
@@ -80,7 +102,7 @@ function playlistTracks(album_id, offset) {
 
             total = res.total
 
-            trackList(res)
+            trackList(res, offset, $('#track_list'))
 
             if (total < offset + 100) {
                 $('.load').hide()
@@ -205,7 +227,7 @@ $('.card').on('click', function(){
     setTimeout(() => {
         let offset = 0
         while(true){
-            let total = trackList(album_id, offset);
+            let total = playlistTracks(album_id, offset);
             offset = offset + 100;
 
             if (offset > total){
@@ -263,7 +285,10 @@ $('#submitSrch').on('click', function(){
         if (xhr.readyState == XMLHttpRequest.DONE) {
             let res = xhr.responseText;
             res = JSON.parse(res)
+
             console.log(res)
+
+            trackList(res, 0, $('#search_track_list'))
         }
     }
 
