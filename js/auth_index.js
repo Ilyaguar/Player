@@ -17,11 +17,16 @@ function trackList(res, offset, list) {
     console.log('items', res)
 
     let m_dir
+
+    console.log(list)
     
-    if (list == $('#track_list')){
+    if (list[0] == $('#track_list')[0]){
+        console.log('norm')
          m_dir = res.items
+
     }
     else {
+        console.log('else')
          m_dir = res.tracks.items
     }
     
@@ -30,7 +35,7 @@ function trackList(res, offset, list) {
 
         let dir
 
-        if (list == $('#track_list')){
+        if (list[0] == $('#track_list')[0]){
             dir = element.track
         }
         else {
@@ -144,6 +149,9 @@ function play_pause(url, track){
         arr.forEach(element => {
             if (element.hasClass('play')) {
                 element.removeClass('play')
+                pp_div = $(element[0].children[1].children[1])
+                pp_div.hide()
+                
             }
         })
         track.addClass('play')
@@ -252,7 +260,9 @@ $(document).on('mouseenter', '.track', function(){
 })
 
 $(document).on('mouseleave', '.track', function(){
-    $(($(this))[0].children[1].children[1]).hide()
+    if (!(($(this)).hasClass('play'))) {
+        $(($(this))[0].children[1].children[1]).hide()
+    }
 })
 
 
