@@ -421,7 +421,7 @@ h3 {
 
 #search_track_list {
     width: 100%;
-    margin: 20px 0;
+    margin: 10px 0;
     box-sizing: border-box;
     overflow-y: auto;
 }
@@ -435,7 +435,6 @@ h3 {
 }
 
 .SWbutts {
-    margin-top: 20px;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
@@ -537,6 +536,10 @@ h3 {
     animation: Swindow 300ms ease;
 }
 
+.s-window-anim-r {
+    animation: Swindow-r 300ms ease;
+}
+
 @keyframes rotate {
     0% {
         transform: rotate(0deg);
@@ -562,6 +565,15 @@ h3 {
     }
     to{
         bottom: 80px;
+    }
+}
+
+@keyframes Swindow-r {
+    from{
+        top: 80px;
+    }
+    to{
+        bottom: -1000px;
     }
 }
 
