@@ -401,7 +401,8 @@ h3 {
 .searchW{
     display: flex;
     flex-direction: column;
-    width: 400px;
+    align-items: center;
+    width: 450px;
     position: fixed;
     top: 80px;
     right: 0;
@@ -411,18 +412,22 @@ h3 {
     padding: 20px;
     color: #fff;
     font-family: 'Montserrat Bold';
+    max-height: 750px;
+    overflow: auto;
+}
+
+.searchW h2 {
+    margin-top: 0;
 }
 
 #search_track_list {
     width: 100%;
     margin: 20px, 0;
     box-sizing: border-box;
-    max-height: 800px;
-    overflow: auto;
 }
 
 #search_track_list .searchlist-track{
-    width: 360px;
+    width: 100%;
 }
 
 #search_track_list .num{
