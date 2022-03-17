@@ -416,7 +416,7 @@ h3 {
 }
 
 .searchW h2 {
-    margin-top: 0;
+    margin-top: 5px;
 }
 
 #search_track_list {
@@ -440,6 +440,7 @@ h3 {
     justify-content: flex-end;
     color: #181818;
     width: 100%;
+    margin-top: 5px;
 }
 
 .SWbutts button {
@@ -536,10 +537,6 @@ h3 {
     animation: Swindow 300ms ease;
 }
 
-.s-window-anim-r {
-    animation: Swindow-r 300ms ease;
-}
-
 @keyframes rotate {
     0% {
         transform: rotate(0deg);
@@ -565,15 +562,6 @@ h3 {
     }
     to{
         bottom: 80px;
-    }
-}
-
-@keyframes Swindow-r {
-    from{
-        top: 80px;
-    }
-    to{
-        bottom: -1000px;
     }
 }
 

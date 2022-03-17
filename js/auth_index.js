@@ -312,9 +312,9 @@ $('#submitSrch').on('click', function(){
 
 $('#minimise').on('click', function(){
     $('.s-window-anim').css('animation-direction', 'reverse')
-    $('.searchW').addClass('s-window-anim-r')
+    $('.searchW').addClass('s-window-anim').css('top', '-1000px')
     setTimeout(() => {
-        $('.searchW').removeClass('s-window-anim-r').hide()
+        $('.searchW').removeClass('s-window-anim').hide()
         $('.searchlist-track').remove()
     }, 500);
 })
