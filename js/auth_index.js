@@ -1,3 +1,6 @@
+const main = $('body'),
+    landing = $(window);
+
 let disableScroll = function () {
     let pagePosition = landing.scrollTop();
     main.addClass('disable-scroll');
