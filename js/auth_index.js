@@ -1,18 +1,15 @@
-const main = $('body'),
-    landing = $(window);
-
-let disableScroll = function () {
-    let pagePosition = landing.scrollTop();
-    main.addClass('disable-scroll');
-    main.offset({top: pagePosition});
-    main.css('top', -pagePosition + 'px');
+function disableScroll() {
+    // Получить текущую позицию прокрутки страницы
+    scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+        // при попытке прокрутки установить это значение на предыдущее
+        window.onscroll = function() {
+            window.scrollTo(scrollLeft, scrollTop);
+        };
 }
 
-let enableScroll = function () {
-    let pagePosition = -main.offset().top;
-    main.css('top', 'auto');
-    main.removeClass('disable-scroll');
-    landing.scrollTop(pagePosition);
+function enableScroll() {
+    window.onscroll = function() {};
 }
 
 function trackList(res, offset, list) {
@@ -297,7 +294,7 @@ $('#submitSrch').on('click', function(){
             res = JSON.parse(res)
 
             trackList(res, 0, $('#search_track_list'))
-            $('#s-window-anim').css('animation-direction', 'forward')
+            $('.s-window-anim').css('animation-direction', 'forward')
             $('.searchW').show().addClass('s-window-anim')
             setTimeout(() => {
                 $('.searchW').removeClass('s-window-anim')
@@ -314,10 +311,10 @@ $('#submitSrch').on('click', function(){
 })
 
 $('#minimise').on('click', function(){
-    $('#s-window-anim').css('animation-direction', 'reverse')
+    $('.s-window-anim').css('animation-direction', 'reverse')
     $('.searchW').addClass('s-window-anim')
     setTimeout(() => {
-        $(".alert").removeClass('s-window-anim').hide()
+        $('.searchW').removeClass('s-window-anim').hide()
         $('.searchlist-track').remove()
     }, 500);
 })

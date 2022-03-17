@@ -413,7 +413,6 @@ h3 {
     color: #fff;
     font-family: 'Montserrat Bold';
     max-height: 750px;
-    overflow: auto;
 }
 
 .searchW h2 {
@@ -422,8 +421,9 @@ h3 {
 
 #search_track_list {
     width: 100%;
-    margin: 20px, 0;
+    margin: 20px 0;
     box-sizing: border-box;
+    overflow-y: auto;
 }
 
 #search_track_list .searchlist-track{
@@ -435,10 +435,12 @@ h3 {
 }
 
 .SWbutts {
+    margin-top: 20px;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     color: #181818;
+    width: 100%;
 }
 
 .SWbutts button {
