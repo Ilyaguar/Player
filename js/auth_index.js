@@ -295,7 +295,7 @@ $('#submitSrch').on('click', function(){
 
             trackList(res, 0, $('#search_track_list'))
             $('.s-window-anim').css('animation-direction', 'forward')
-            $('.searchW').show().addClass('s-window-anim')
+            $('.searchW').show().css('top', '80px').addClass('s-window-anim')
             setTimeout(() => {
                 $('.searchW').removeClass('s-window-anim')
             }, 500);
