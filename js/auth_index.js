@@ -33,13 +33,15 @@ function trackList(res, offset, list) {
 
     m_dir.forEach(element => {
 
-        let dir
+        let dir, track_class
 
         if (list[0] == $('#track_list')[0]){
             dir = element.track
+            track_class = 'playlist-track'
         }
         else {
             dir = element
+            track_class = 'searchlist-track'
         }
 
         let cover = dir.album.images[0].url,
@@ -72,8 +74,8 @@ function trackList(res, offset, list) {
         }
 
         let block = `
-            <div class="track">
-                <span>${i}</span>
+            <div class="track, ${track_class}">
+                <span class='num'>${i}</span>
                 <div class='intercover'>
                     <img src="${cover}" alt="cover" id="${preview}" class="track_cover">
                     <div class='pp_cover' style='display: none;'>
@@ -217,7 +219,7 @@ $('.bigbtn').on('click', function() {
     $('.transCover').hide()
     $('#album_info').hide()
     enableScroll()
-    $('.track').remove()
+    $('.playlist-track').remove()
 });
 
 
@@ -273,7 +275,7 @@ $(document).on('click', '.track', function(){
     
     let ans = play_pause(url, $(this))
     if (ans == 404){
-        $(".alert").addClass('alert-anim').show()
+        $(".alert").show().addClass('alert-anim')
         setTimeout(() => {
             $(".alert").removeClass('alert-anim')
         }, 500);
@@ -289,16 +291,19 @@ $('#submitSrch').on('click', function(){
     q = $('#srchBar')[0].value
 
     let xhr = new XMLHttpRequest();
-    let r_link = baseUrl + `/search?query=${q}&type=track&limit=10`;
+    let r_link = baseUrl + `/search?query=${q}&type=track&limit=10&offset=${offset}`;
     
     xhr.onreadystatechange = function() {
         if (xhr.readyState == XMLHttpRequest.DONE) {
             let res = xhr.responseText;
             res = JSON.parse(res)
 
-            console.log(res)
-
             trackList(res, 0, $('#search_track_list'))
+            $('#s-window-anim').css('animation-direction', 'forward')
+            $('.searchW').show().addClass('s-window-anim')
+            setTimeout(() => {
+                $('.searchW').removeClass('s-window-anim')
+            }, 500);
         }
     }
 
@@ -308,5 +313,13 @@ $('#submitSrch').on('click', function(){
     xhr.setRequestHeader('Authorization', 'Bearer ' + token)
         
     xhr.send();
+})
 
+$('#minimise').on('click', function(){
+    $('#s-window-anim').css('animation-direction', 'reverse')
+    $('.searchW').addClass('s-window-anim')
+    setTimeout(() => {
+        $(".alert").removeClass('s-window-anim').hide()
+        $('.searchlist-track').remove()
+    }, 500);
 })

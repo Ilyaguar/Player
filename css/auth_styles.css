@@ -314,6 +314,7 @@ h3 {
     width: 450px;
     height: 450px;
     object-fit: cover;
+    border-radius: 3px;
 }
 
 .bigbtn {
@@ -400,46 +401,52 @@ h3 {
 .searchW{
     display: flex;
     flex-direction: column;
-    width: 500px;
-    position: absolute;
-    top: 80;
+    width: 400px;
+    position: fixed;
+    top: 80px;
     right: 0;
-    background-color: #3B3B3B;
+    background-color: #282828;
+    border-bottom-left-radius: 3px;
+    transition: all 300ms ease;
+    padding: 20px;
 }
 
 #search_track_list {
     width: 100%;
-    margin: 20px;
+    margin: 20px, 0;
     box-sizing: border-box;
+}
+
+#search_track_list .searchlist-track{
+    width: 360px;
+}
+
+#search_track_list .num{
+    display: none;
 }
 
 .SWbutts {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-end;
+    font-family: 'Montserrat Bold';
+    color: #181818;
 }
 
 .SWbutts button {
     border: none;
     border-radius: 100px;
-    width: 100px;
-    height: 40px;
+    width: 90px;
+    height: 30px;
 }
 
 #minimise {
-    background-color: rgba(255, 255, 255, 0.08);
+    background-color: rgba(57, 204, 108, 0.9);
+    transition: all 300ms ease;
 }
 
 #minimise:hover {
-    background-color: rgba(255, 255, 255, 0.12);
-}
-
-#next_b {
     background-color: #1ed760;
-}
-
-#next_b:hover {
-    background-color: rgba(57, 204, 108, 0.75);
 }
 
 .alert {
@@ -516,6 +523,10 @@ h3 {
     animation: alert-pos 500ms ease;
 }
 
+.s-window-anim {
+    animation: Swindow 300ms ease;
+}
+
 @keyframes rotate {
     0% {
         transform: rotate(0deg);
@@ -532,6 +543,15 @@ h3 {
     }
     to{
         bottom: 0;
+    }
+}
+
+@keyframes Swindow {
+    from{
+        top: -1000px;
+    }
+    to{
+        bottom: 80px;
     }
 }
 
