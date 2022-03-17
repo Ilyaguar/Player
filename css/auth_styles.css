@@ -409,12 +409,16 @@ h3 {
     border-bottom-left-radius: 3px;
     transition: all 300ms ease;
     padding: 20px;
+    color: #fff;
+    font-family: 'Montserrat Bold';
 }
 
 #search_track_list {
     width: 100%;
     margin: 20px, 0;
     box-sizing: border-box;
+    max-height: 800px;
+    overflow: auto;
 }
 
 #search_track_list .searchlist-track{
@@ -429,7 +433,6 @@ h3 {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    font-family: 'Montserrat Bold';
     color: #181818;
 }
 

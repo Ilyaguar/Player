@@ -14,23 +14,15 @@ function enableScroll() {
 
 function trackList(res, offset, list) {
     i = 1 + offset;
-    console.log('items', res)
-
     let m_dir
-
-    console.log(list)
     
     if (list[0] == $('#track_list')[0]){
-        console.log('norm')
          m_dir = res.items
-
     }
     else {
-        console.log('else')
          m_dir = res.tracks.items
     }
     
-
     m_dir.forEach(element => {
 
         let dir, track_class
@@ -74,7 +66,7 @@ function trackList(res, offset, list) {
         }
 
         let block = `
-            <div class="track, ${track_class}">
+            <div class="track ${track_class}">
                 <span class='num'>${i}</span>
                 <div class='intercover'>
                     <img src="${cover}" alt="cover" id="${preview}" class="track_cover">
@@ -289,9 +281,12 @@ $(document).on('click', '.track', function(){
 
 $('#submitSrch').on('click', function(){
     q = $('#srchBar')[0].value
+    if ($('#search_track_list')[0].children.length > 0) {
+        $('.searchlist-track').remove()
+    }
 
     let xhr = new XMLHttpRequest();
-    let r_link = baseUrl + `/search?query=${q}&type=track&limit=10&offset=${offset}`;
+    let r_link = baseUrl + `/search?query=${q}&type=track&limit=50`;
     
     xhr.onreadystatechange = function() {
         if (xhr.readyState == XMLHttpRequest.DONE) {
