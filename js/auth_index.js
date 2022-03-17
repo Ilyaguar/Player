@@ -1,15 +1,15 @@
-function disableScroll() {
-    // Получить текущую позицию прокрутки страницы
-    scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
-        // при попытке прокрутки установить это значение на предыдущее
-        window.onscroll = function() {
-            window.scrollTo(scrollLeft, scrollTop);
-        };
+let disableScroll = function () {
+    let pagePosition = landing.scrollTop();
+    main.addClass('disable-scroll');
+    main.offset({top: pagePosition});
+    main.css('top', -pagePosition + 'px');
 }
 
-function enableScroll() {
-    window.onscroll = function() {};
+let enableScroll = function () {
+    let pagePosition = -main.offset().top;
+    main.css('top', 'auto');
+    main.removeClass('disable-scroll');
+    landing.scrollTop(pagePosition);
 }
 
 function trackList(res, offset, list) {
