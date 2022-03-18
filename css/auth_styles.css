@@ -156,9 +156,11 @@ footer {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    background-color: #181818;
-    color: rgb(185, 185, 185);
+    background-color: #141414;
+    color: rgb(170, 170, 170);
     font-family: "Montserrat-ExtraBold", sans-serif;
+    padding: 0 50px;
+    font-size: 12pt;
 }
 
 footer ul {
@@ -167,7 +169,8 @@ footer ul {
 }
 
 footer h2 {
-    color: rgb(214, 214, 214);
+    color: rgb(185, 185, 185);
+    font-size: 15pt;
 }
 
 .foot {
@@ -177,7 +180,7 @@ footer h2 {
 }
 
 footer a {
-    color: rgb(185, 185, 185);
+    color: rgb(180, 180, 180);
     font-family: "Montserrat-ExtraBold", sans-serif;
 }
 
@@ -665,6 +668,15 @@ footer a {
 
     main {
         padding-top: 90px
+    }
+
+    footer {
+        padding: 0 40px;
+        font-size: 10pt;
+    }
+
+    footer h2 {
+        font-size: 13pt;
     }
 
     @keyframes Swindow {
