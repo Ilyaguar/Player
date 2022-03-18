@@ -569,7 +569,7 @@ h3 {
 }
 
 .s-window-anim {
-    animation: Swindow 300ms ease alternate;
+    animation: Swindow 300ms ease;
 }
 
 @keyframes rotate {
