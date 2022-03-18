@@ -18,27 +18,6 @@
             </div>
         </a>
 
-        <!-- <div class="miniPlayer">
-            <img src="../img/empty.png" alt="curAlb">
-
-            <div class="info">
-
-                <div class="trackInfo">
-                    <h2>1000-7</h2>
-                    <p> | </p>
-                    <a href="" target="_blank">fem.love</a>
-                </div>
-
-                <div class="meter">
-                    <div class="playedL">
-                        <div class="line"></div>
-                    </div>
-                    <div class="line"></div>
-                </div>
-
-            </div>
-        </div> -->
-
         <div class="searchBar">
             <input type="text" id="srchBar" class="inputf" placeholder="Search for track...">
             <button id="submitSrch" type="submit"><img src="../img/search.png" alt="srch"></button>
@@ -110,36 +89,32 @@
 
             </div>
         </section>
-
     </main>
+
+    <footer>
+        <div class="foot">
+            <h2>Обо мне</h2>
+            <ul>
+                <li>Кузьмин Илья</li>
+                <li>Лицей при УлГТУ</li>
+                <li>10 класс</li>
+            </ul>
+            
+        </div>
+        <div class="foot">
+            <h2>Контакты</h2>
+            <ul>
+                <li>Телефон: <a href="tel:+79377670199">+7 937 757 01 99</a></li>
+                <li>Почта: <a href="mailto:ilyaguar@gmail.com">ilyaguar@gmail.com</a></li>
+            </ul>
+        </div>
+    </footer>
 
 <!-- Modal Window -->
 
     <div class="transCover"> 
 
         <div class="load"></div>
-
-        <!-- <div class="info_box" id="player">
-
-            <img src="../img/cover.jpg" alt="" class="bigCover">
-            <h2>1000-7</h2>
-            <a href="" target="_blank">fem.love</a>
-
-            <div class="meter">
-                <div class="playedL">
-                    <div class="line"></div>
-                </div>
-                <div class="line"></div>
-            </div>
-
-            <div class="butts">
-                <button id="prev">▲</button>
-                <button id="pause">
-                    <img src="../img/pause.png" alt="">
-                </button>
-                <button id="next">▲</button>
-            </div>
-        </div> -->
 
         <div class="info_box" id="album_info">
             <h2></h2>
@@ -154,6 +129,7 @@
     </div>
 
     <!-- Search Result Window -->
+
     <div class="searchW" style="display: none;">
         <h2>Search Results</h2>
         <div id="search_track_list">
@@ -164,14 +140,11 @@
         </div>
     </div>
 
-
     <div class="alert">
         <p>Sorry no preview was found, try other tracks</p>
     </div>
 
-
     <audio src="" id="audio" class="pause"></audio>
-
 
     <script src="../js/jquery-3.6.0.min.js"></script>
     <script src="../js/auth_index.js"></script>

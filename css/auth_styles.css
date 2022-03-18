@@ -152,6 +152,22 @@ h3 {
     margin: 10px;
 }
 
+footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    background-color: #181818;
+    color: rgb(185, 185, 185);
+}
+
+footer ul {
+    list-style: none;
+}
+
+footer h2 {
+    color: rgb(214, 214, 214);
+}
+
 /*------------------------------------------------------------*/
 
 .transCover {
@@ -175,64 +191,6 @@ h3 {
     border-radius: 5px;
     display: none;
     max-height: 85vh;
-}
-
-#player {
-    justify-content: space-evenly;
-    width: 600px;
-}
-
-.info_box a {
-    color: rgb(189, 189, 189);
-    text-decoration: none;
-}
-
-.butts {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 240px;
-}
-
-.butts button {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: none;
-    background-color: rgba(255, 255, 255, 0.04);
-    font-size: 20pt;
-    color: rgba(255, 255, 255, 0.33);
-}
-
-.butts button:hover {
-    background-color: rgba(255, 255, 255, 0.08);
-}
-
-#next {
-    transform: rotate(90deg);
-}
-
-#prev {
-    transform: rotate(-90deg);
-}
-
-#pause {
-    background-color: rgb(156, 66, 240);
-    height: 55px;
-    width: 55px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0;
-}
-
-#pause img {
-    height: 25px;
-    widows: 25px;
-}
-
-#pause:hover {
-    background-color: rgb(172, 94, 245);
 }
 
 .bigCover {
@@ -360,7 +318,7 @@ h3 {
     color: #fff;
     font-family: 'Montserrat Bold';
     height: 750px;
-    max-height: 85vh;
+    max-height: 80vh;
 }
 
 .searchW h2 {
@@ -592,7 +550,7 @@ h3 {
     }
 
     .info_box {
-        width: 530px;
+        width: 540px;
     }
 
     #track_list {
