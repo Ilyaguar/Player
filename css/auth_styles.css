@@ -572,6 +572,10 @@ h3 {
     animation: Swindow 300ms ease;
 }
 
+.s-window-anim-r {
+    animation: Swindow-r 300ms ease;
+}
+
 @keyframes rotate {
     0% {
         transform: rotate(0deg);
@@ -597,6 +601,15 @@ h3 {
     }
     to{
         top: 80px;
+    }
+}
+
+@keyframes Swindow-r {
+    from{
+        top: 80px;
+    }
+    to{
+        top: -1000px;
     }
 }
 

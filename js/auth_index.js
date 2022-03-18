@@ -305,7 +305,6 @@ $('#submitSrch').on('click', function(){
             }
             trackList(res, 0, $('#search_track_list'))
             if($('.searchW').css('display') == 'none'){
-                $('s-window-anim').css('animation-direction', 'normal')
                 $('.searchW').show().addClass('s-window-anim')
                 setTimeout(() => {
                     $('.searchW').removeClass('s-window-anim')
@@ -323,10 +322,9 @@ $('#submitSrch').on('click', function(){
 })
 
 $('#minimise').on('click', function(){
-    $('s-window-anim').css('animation-direction', 'reverse')
-    $('.searchW').addClass('s-window-anim')
+    $('.searchW').addClass('s-window-anim-r')
     setTimeout(() => {
-        $('.searchW').removeClass('s-window-anim').hide()
+        $('.searchW').removeClass('s-window-anim-r').hide()
         $('.searchlist-track').remove()
     }, 300);
 })
