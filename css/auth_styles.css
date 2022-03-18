@@ -1,3 +1,7 @@
+root {
+    --header-height: 80px;
+}
+
 header{
     background-color: rgb(34, 34, 34);
     margin: 0;
@@ -28,8 +32,8 @@ body {
 }
 
 .logo img {
-    width: 80px;
-    height: 80px;
+    width: var(--header-height);
+    height: var(--header-height);
     margin: 5px 0px;
     display: flex;
     justify-content: center;
@@ -104,8 +108,7 @@ main {
     display: flex;
     flex-direction: column;
     color: #fff;
-    padding: 20px 100px;
-    margin-top: 90px;
+    padding: 110px 100px 20px 100px;
 }
 
 .row {
@@ -535,13 +538,13 @@ h3 {
         top: -1000px;
     }
     to{
-        top: 80px;
+        top: 90px;
     }
 }
 
 @keyframes Swindow-r {
     from{
-        top: 80px;
+        top: 90px;
     }
     to{
         top: -1000px;
@@ -563,9 +566,8 @@ h3 {
 /*----- Adaptive -------------------------------------------------------*/
 
 @media (max-height: 800px) {
-    .logo img {
-        width: 60px;
-        height: 60px;
+    :root {
+        --header-height: 60px
     }
 
     .logo h1 {
@@ -629,10 +631,6 @@ h3 {
         color: rgb(185, 185, 185);
     }
 
-    .track_info {
-        width: auto;
-    }
-
     .explicitL {
         width: 17px;
         height: 17px;
@@ -651,16 +649,16 @@ h3 {
     }
 
     .searchW .track{
-        font-size: 9pt;
-        padding: 0 5px;
+        font-size: 10pt;
+        padding: 0 15px;
     }
 
     .searchW .artists{
-        font-size: 7.5pt;
+        font-size: 8.5pt;
     }
 
     .searchW .intercover {
-        margin: 0 10px 0 0;
+        margin: 0 15px 0 0;
     }
 
     .searchW .explicitL {
@@ -670,7 +668,7 @@ h3 {
         border-radius: 4px;
     }
     .searchW .explicitL span {
-        font-size: 7.5pt;
+        font-size: 8.5pt;
     }
 
     .SWbutts button {
@@ -683,5 +681,27 @@ h3 {
         height: 80px;
         padding: 10px;
         font-size: 10pt;
+    }
+
+    main {
+        padding-top: 90px
+    }
+
+    @keyframes Swindow {
+        from{
+            top: -1000px;
+        }
+        to{
+            top: 70px;
+        }
+    }
+    
+    @keyframes Swindow-r {
+        from{
+            top: 70px;
+        }
+        to{
+            top: -1000px;
+        }
     }
 }

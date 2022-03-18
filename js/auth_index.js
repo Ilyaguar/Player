@@ -305,7 +305,7 @@ $('#submitSrch').on('click', function(){
             }
             trackList(res, 0, $('#search_track_list'))
             if($('.searchW').css('display') == 'none'){
-                $('.searchW').show().addClass('s-window-anim').css('top', '80px')
+                $('.searchW').show().addClass('s-window-anim').css('top', 'calc(var(--header-height) + 10px)')
                 setTimeout(() => {
                     $('.searchW').removeClass('s-window-anim')
                 }, 300);
