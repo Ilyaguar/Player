@@ -407,7 +407,7 @@ h3 {
     justify-content: center;
     align-items: center;
     position: absolute;
-    right: 55px;
+    right: 70px;
 }
 
 .explicitL span{
@@ -452,6 +452,13 @@ h3 {
 
 .searchW .intercover {
     margin: 0 15px;
+}
+
+.searchW .explicitL {
+    width: 15px;
+    height: 15px;
+    right: 55px;
+    border-radius: 5px;
 }
 
 #search_track_list {

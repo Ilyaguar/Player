@@ -305,7 +305,7 @@ $('#submitSrch').on('click', function(){
             }
             trackList(res, 0, $('#search_track_list'))
             if($('.searchW').css('display') == 'none'){
-                $('.searchW').show().addClass('s-window-anim')
+                $('.searchW').show().addClass('s-window-anim').css('top', '80px')
                 setTimeout(() => {
                     $('.searchW').removeClass('s-window-anim')
                 }, 300);
@@ -322,7 +322,7 @@ $('#submitSrch').on('click', function(){
 })
 
 $('#minimise').on('click', function(){
-    $('.searchW').addClass('s-window-anim-r')
+    $('.searchW').addClass('s-window-anim-r').css('top', '-1000px')
     setTimeout(() => {
         $('.searchW').removeClass('s-window-anim-r').hide()
         $('.searchlist-track').remove()
