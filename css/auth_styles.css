@@ -97,85 +97,6 @@ body {
     height: 15px;
 }
 
-.miniPlayer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0px 20px;
-    background-color: rgba(255, 255, 255, 0.08);
-    border-radius: 5px;
-    height: 95%;
-    width: 475px;
-    box-sizing: border-box;
-    cursor: pointer;
-}
-
-.miniPlayer img {
-    height: 50px;
-    width: 50px;
-    background-color: #fff;
-    border-radius: 8px;
-    margin: 5px 0px;
-    margin-right: 20px;
-}
-
-.info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    height: 50px;
-}
-
-.info a {
-    margin: 0px;
-    margin-left: 20px;
-    color: rgb(160, 160, 160);
-    text-decoration: none;
-}
-
-.info p {
-    margin: 0;
-    margin-left: 20px;
-    color: rgb(105, 105, 105);
-}
-
-
-.info h2 {
-    margin: 0px;
-    font-size: 14pt;
-    color: #fff;
-}
-
-.trackInfo {
-    display: flex;
-    align-items: center;
-    width: 350px;
-}
-
-.meter {
-    margin: 10px 0px;
-    width: 350px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.line {
-    width: 100%;
-    height: 3px;
-    border-radius: 3px;
-    background-color: rgba(255, 255, 255, 0.14);
-}
-
-.playedL {
-    width: 30%;
-    display: flex;
-    align-items: center;
-    position: relative;
-    top: 3px;
-}
-
 /*------------------------------------------------------------*/
 
 main {
@@ -233,7 +154,7 @@ h3 {
 .transCover {
     position: fixed;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background-color: rgba(0, 0, 0, 0.75);
 }
 
@@ -250,6 +171,7 @@ h3 {
     color: #fff;
     border-radius: 5px;
     display: none;
+    max-height: 85vh;
 }
 
 #player {
@@ -435,7 +357,7 @@ h3 {
     color: #fff;
     font-family: 'Montserrat Bold';
     height: 750px;
-    max-height: 90vh;
+    max-height: 85vh;
 }
 
 .searchW h2 {
@@ -636,4 +558,130 @@ h3 {
 @font-face {
 	font-family: Montserrat Bold;
     src: url(../fonts/Montserrat-Bold.ttf); 
+}
+
+/*----- Adaptive -------------------------------------------------------*/
+
+@media (max-height: 800px) {
+    .logo img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .logo h1 {
+        font-size: 22pt;
+    }
+
+    .card {
+        height: 270px;
+        width: 200px;
+    }
+
+    .card img {
+        width: 160px;
+        height: 160px;
+        object-fit: cover;
+        border-radius: 4px;
+    }
+
+    .bigCover {
+        width: 400px;
+        height: 400px;
+    }
+
+    #track_list {
+        width: 500px;
+    }
+
+    .track {
+        font-size: 10pt;
+        height: 65px;
+        margin: 5px 0px;
+        padding: 0 15px;
+    }
+
+    .track img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .intercover {
+        width: 50px;
+        height: 50px;
+        margin: 0px 15px;
+    }
+
+    .pp_cover {
+        top: -54px;
+        width: 50px;
+        height: 50px;
+    }
+
+    .pp_cover img {
+        width: 22px;
+        height: 22px;
+        opacity: 0.75;
+    }
+
+    .artists {
+        font-size: 8.5pt;
+        margin-top: 8px;
+        color: rgb(185, 185, 185);
+    }
+
+    .track_info {
+        width: auto;
+    }
+
+    .explicitL {
+        width: 17px;
+        height: 17px;
+        border-radius: 5px;
+        right: 55px;
+    }
+
+    .explicitL span{
+        font-size: 8.5pt;
+    }
+
+    .searchW{
+        width: 400px;
+        top: 60px;
+        padding: 20px;
+    }
+
+    .searchW .track{
+        font-size: 9pt;
+        padding: 0 5px;
+    }
+
+    .searchW .artists{
+        font-size: 7.5pt;
+    }
+
+    .searchW .intercover {
+        margin: 0 10px 0 0;
+    }
+
+    .searchW .explicitL {
+        width: 12px;
+        height: 12px;
+        right: 40px;
+        border-radius: 4px;
+    }
+    .searchW .explicitL span {
+        font-size: 7.5pt;
+    }
+
+    .SWbutts button {
+        width: 80px;
+        height: 25px;
+    }
+
+    .alert {
+        width: 260px;
+        height: 80px;
+        padding: 10px;
+        font-size: 10pt;
+    }
 }
