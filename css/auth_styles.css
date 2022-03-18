@@ -347,6 +347,7 @@ h3 {
     box-sizing: border-box;
     cursor: pointer;
     transition: all 500ms ease;
+    position: relative;
 }
 
 .track:hover {
@@ -400,16 +401,20 @@ h3 {
     width: 20px;
     height: 20px;
     border: rgba(255, 255, 255, 0.10) solid 2px;
-    border-radius: 5px;
+    border-radius: 7px;
     color: rgba(255, 255, 255, 0.10);
-    margin: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 55px;
 }
 
 .explicitL span{
     font-size: 12pt;
 }
 
-notExplicitL {
+.notExplicitL {
     display: none;
 }
 
@@ -434,6 +439,19 @@ notExplicitL {
 
 .searchW h2 {
     margin-top: 5px;
+}
+
+.searchW .track{
+    font-size: 10pt;
+    padding: 0 10px;
+}
+
+.searchW .artists{
+    font-size: 9pt;
+}
+
+.searchW .intercover {
+    margin: 0 15px;
 }
 
 #search_track_list {
