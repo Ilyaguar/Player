@@ -305,10 +305,11 @@ $('#submitSrch').on('click', function(){
             }
             trackList(res, 0, $('#search_track_list'))
             if($('.searchW').css('display') == 'none'){
-                $('.searchW').show().css('top', '80px').addClass('s-window-anim')
+                $('s-window-anim').css('animation-direction', 'normal')
+                $('.searchW').show().addClass('s-window-anim')
                 setTimeout(() => {
                     $('.searchW').removeClass('s-window-anim')
-                }, 500);
+                }, 300);
             }
         }
     }
@@ -322,9 +323,10 @@ $('#submitSrch').on('click', function(){
 })
 
 $('#minimise').on('click', function(){
+    $('s-window-anim').css('animation-direction', 'reverse')
     $('.searchW').addClass('s-window-anim')
     setTimeout(() => {
         $('.searchW').removeClass('s-window-anim').hide()
         $('.searchlist-track').remove()
-    }, 500);
+    }, 300);
 })
