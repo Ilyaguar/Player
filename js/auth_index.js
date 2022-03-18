@@ -187,6 +187,9 @@ while (curURL[i] != '&') {      //Getting token
 
 let cards = Array.from($('.card'))
 let card_covers = Array.from($('.card_cover'))
+var sheet = document.styleSheets[0];
+
+sheet.insertRule(":root{--header-height:80px}");
 
 i = 0;
 cards.forEach(element => {
