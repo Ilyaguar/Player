@@ -322,7 +322,7 @@ $('#submitSrch').on('click', function(){
 })
 
 $('#minimise').on('click', function(){
-    $('.searchW').css('top', '-1000px').addClass('s-window-anim')
+    $('.searchW').addClass('s-window-anim')
     setTimeout(() => {
         $('.searchW').removeClass('s-window-anim').hide()
         $('.searchlist-track').remove()
