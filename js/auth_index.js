@@ -68,7 +68,6 @@ function trackList(res, offset, list) {
         let ex = `class='notExplicitL'`
 
         if (dir.explicit == true){
-            console.log('explicit')
             ex = `class='explicitL'`
         }
 

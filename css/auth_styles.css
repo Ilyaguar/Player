@@ -591,6 +591,10 @@ h3 {
         height: 400px;
     }
 
+    .info_box {
+        width: 530px;
+    }
+
     #track_list {
         width: 500px;
     }
@@ -614,7 +618,7 @@ h3 {
     }
 
     .pp_cover {
-        top: -54px;
+        top: -53px;
         width: 50px;
         height: 50px;
     }
@@ -648,6 +652,10 @@ h3 {
         padding: 20px;
     }
 
+    .searchW h2 {
+        margin: 5px 0 10px 0;
+    }
+
     .searchW .track{
         font-size: 10pt;
         padding: 0 15px;
@@ -664,9 +672,10 @@ h3 {
     .searchW .explicitL {
         width: 12px;
         height: 12px;
-        right: 40px;
+        right: 50px;
         border-radius: 4px;
     }
+
     .searchW .explicitL span {
         font-size: 8.5pt;
     }
