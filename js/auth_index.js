@@ -65,6 +65,13 @@ function trackList(res, offset, list) {
             artists += '...'
         }
 
+        let ex = `class='notExplicitL'`
+
+        if (dir.explicit == true){
+            console.log('explicit')
+            ex = `class='explicitL'`
+        }
+
         let block = `
             <div class="track ${track_class}">
                 <span class='num'>${i}</span>
@@ -78,6 +85,9 @@ function trackList(res, offset, list) {
                     <span title-'${alt_name}'>${name}</span>
                     <br>
                     <span class="artists" title='${alt_artists}'>${artists}</span>
+                </div>
+                <div ${ex}>
+                    <span>E</span>
                 </div>
                 <span>${duration}</span>
             </div>
@@ -281,9 +291,6 @@ $(document).on('click', '.track', function(){
 
 $('#submitSrch').on('click', function(){
     q = $('#srchBar')[0].value
-    if ($('#search_track_list')[0].children.length > 0) {
-        $('.searchlist-track').remove()
-    }
 
     let xhr = new XMLHttpRequest();
     let r_link = baseUrl + `/search?query=${q}&type=track&limit=50`;
@@ -293,12 +300,16 @@ $('#submitSrch').on('click', function(){
             let res = xhr.responseText;
             res = JSON.parse(res)
 
+            if ($('#search_track_list')[0].children.length > 0) {
+                $('.searchlist-track').remove()
+            }
             trackList(res, 0, $('#search_track_list'))
-            $('.s-window-anim').css('animation-direction', 'forward')
-            $('.searchW').show().css('top', '80px').addClass('s-window-anim')
-            setTimeout(() => {
-                $('.searchW').removeClass('s-window-anim')
-            }, 500);
+            if($('.searchW').css('display') == 'none'){
+                $('.searchW').show().css('top', '80px').addClass('s-window-anim')
+                setTimeout(() => {
+                    $('.searchW').removeClass('s-window-anim')
+                }, 500);
+            }
         }
     }
 
@@ -311,7 +322,6 @@ $('#submitSrch').on('click', function(){
 })
 
 $('#minimise').on('click', function(){
-    $('.s-window-anim').css('animation-direction', 'reverse')
     $('.searchW').css('top', '-1000px').addClass('s-window-anim')
     setTimeout(() => {
         $('.searchW').removeClass('s-window-anim').hide()
