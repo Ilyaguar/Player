@@ -305,10 +305,11 @@ $('#submitSrch').on('click', function(){
 
             if ($('#search_track_list')[0].children.length > 0) {
                 $('.searchlist-track').remove()
+                $('.noRes').remove()
             }
             trackList(res, 0, $('#search_track_list'))
             if ($('#search_track_list')[0].children.length == 0) {
-                $('#search_track_list').push(noRes)
+                $('#search_track_list').append(noRes)
             }
             if($('.searchW').css('display') == 'none'){
                 $('.searchW').show().addClass('s-window-anim').css('top', 'calc(var(--header-height) + 10px)')
