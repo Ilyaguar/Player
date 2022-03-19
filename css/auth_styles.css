@@ -419,7 +419,7 @@ footer a {
     height: 100px;
     position: absolute;
     right: 0;
-    bottom: 0;
+    bottom: 0px;
     z-index: 100;
     display: none;
     background-color: rgba(255, 255, 255, 0.2);
@@ -508,10 +508,10 @@ footer a {
 
 @keyframes alert-pos {
     from{
-        bottom: -200px;
+        bottom: -100px;
     }
     to{
-        bottom: -100px;
+        bottom: 0px;
     }
 }
 
