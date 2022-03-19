@@ -111,6 +111,7 @@ main {
     flex-direction: column;
     color: #fff;
     padding: 110px 100px 20px 100px;
+    margin: 0;
 }
 
 .row {
@@ -163,6 +164,7 @@ footer {
     font-family: "Montserrat-ExtraBold", sans-serif;
     padding: 50px 0;
     font-size: 12pt;
+    margin: 0;
 }
 
 footer ul {
@@ -406,6 +408,11 @@ footer a {
 
 #minimise:hover {
     background-color: #1ed760;
+}
+
+.noRes {
+    color: rgb(170, 170, 170);
+    font-size: 12pt;
 }
 
 .alert {

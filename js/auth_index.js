@@ -294,8 +294,9 @@ $(document).on('click', '.track', function(){
 $('#submitSrch').on('click', function(){
     q = $('#srchBar')[0].value
 
-    let xhr = new XMLHttpRequest();
-    let r_link = baseUrl + `/search?query=${q}&type=track&limit=50`;
+    let xhr = new XMLHttpRequest(),
+        r_link = baseUrl + `/search?query=${q}&type=track&limit=50`,
+        noRes = `<p class='noRes'>No search results</p>`
     
     xhr.onreadystatechange = function() {
         if (xhr.readyState == XMLHttpRequest.DONE) {
@@ -306,6 +307,9 @@ $('#submitSrch').on('click', function(){
                 $('.searchlist-track').remove()
             }
             trackList(res, 0, $('#search_track_list'))
+            if ($('#search_track_list')[0].children.length > 0) {
+                $('.searchlist-track').push(noRes)
+            }
             if($('.searchW').css('display') == 'none'){
                 $('.searchW').show().addClass('s-window-anim').css('top', 'calc(var(--header-height) + 10px)')
                 setTimeout(() => {
