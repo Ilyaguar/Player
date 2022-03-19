@@ -508,10 +508,10 @@ footer a {
 
 @keyframes alert-pos {
     from{
-        bottom: -100px;
+        bottom: -200px;
     }
     to{
-        bottom: 0;
+        bottom: -100px;
     }
 }
 
